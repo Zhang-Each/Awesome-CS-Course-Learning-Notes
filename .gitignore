@@ -1,0 +1,13 @@
+cifar-10-batches-py/
+.ipynb_checkpoints/
+.idea/
+__pycache__/
+coco_captioning/
+.DS_Store
+*.aux
+*.log
+*.tex
+*.toc
+pictures/
+*.ttf
+chapter/
