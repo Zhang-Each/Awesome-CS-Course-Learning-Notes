@@ -11,3 +11,4 @@ coco_captioning/
 pictures/
 *.ttf
 chapter/
+*.gz
