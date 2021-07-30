@@ -1,5 +1,7 @@
 # Lecture1：Introduction&MapReduce
 
+> 这一节的内容包含了MIT6.824分布式系统课程的Lecture1的内容(课程介绍，MapReduce)以及阅读MapReduce原论文过程中做的一些笔记。
+
 ## Introduction
 
 ### 为什么需要分布式系统
