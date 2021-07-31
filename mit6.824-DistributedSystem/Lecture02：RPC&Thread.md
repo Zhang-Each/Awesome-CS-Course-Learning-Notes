@@ -1,4 +1,4 @@
-# Lecture2：RPC&Thread
+# Lecture02：RPC&Thread
 
 > 这一节笔记包含了MIT6.824分布式系统的Lecture2，主要讲了一些和go语言相关的知识以及线程，RPC等基础知识
 
