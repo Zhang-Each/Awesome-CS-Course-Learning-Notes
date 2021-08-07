@@ -16,16 +16,17 @@
 
 - 本仓库中的各个目录下包含的内容主要有：
 
-| 目录                    | 包含内容                                                     |
-| ----------------------- | ------------------------------------------------------------ |
-| course-list             | 包含一个自己想学习的课程清单，主要是外国名校的一些公开课课程 |
-| cs224n-NLP              | 包含Stanford-cs224n自然语言处理课程中的学习笔记和assignments |
-| cs224w-GraphML&GNN      | 包含Stanford-cs224w图机器学习和图神经网络课程的学习笔记和完成的assignments |
-| cs231n-NeuralNetwork&DL | 包含Stanford-cs231n神经网络和深度学习入门课程的assignments和完成assignments过程中所写的一系列**公式推导和感悟**，相关内容也发表在个人博客上 |
-| cs246-DataMining&Recsys | Stanford-cs246海量数据集挖掘课程的学习笔记和assignments，不过还没开始 |
-| log                     | **记录本仓库的更新记录**                                     |
-| machine-learning        | 以前学习机器学习过程中完成的一些笔记和coding                 |
-| paper-reading           | 读各种论文过程中的一些笔记                                   |
+| 目录                           | 包含内容                                                     |
+| ------------------------------ | ------------------------------------------------------------ |
+| course-list                    | 包含一个自己想学习的课程清单，主要是外国名校的一些公开课课程 |
+| cs224n-NLP                     | 包含Stanford-cs224n自然语言处理课程中的学习笔记和assignments |
+| cs224w-GraphML&GNN             | 包含Stanford-cs224w图机器学习和图神经网络课程的学习笔记和完成的assignments |
+| cs231n-NeuralNetwork&DL        | 包含Stanford-cs231n神经网络和深度学习入门课程的assignments和完成assignments过程中所写的一系列**公式推导和感悟**，相关内容也发表在个人博客上 |
+| cs246-DataMining&Recsys        | Stanford-cs246海量数据集挖掘课程的学习笔记和assignments，目前正在进行中 |
+| cs330-Multi-task&Meta Learning | Stanford-cs330课程，主要讲元学习和多任务学习，但是感觉质量一般，后面强化学期部分就不看了。 |
+| log                            | **记录本仓库的更新记录**                                     |
+| machine-learning               | 以前学习机器学习过程中完成的一些笔记和coding                 |
+| paper-reading                  | 读各种论文过程中的一些笔记                                   |
 
 
 

@@ -8,8 +8,8 @@
 | --------------- | ---------------------------------------------------- | ------------------------------------------------------------ | ----------------------------------------------- |
 | Stanford-CS231N | Convolutional Neural Networks for Visual Recognition | 深度学习入门课，包含了神经网络，深度学习，CV，NLP领域的基础入门知识 | 完成了3个assignments                            |
 | Stanford-CS224N | Deep Learning for Natural Language  Processing       | NLP与深度学习的入门课程，从词向量开始介绍了NLP的各种方法     | 学习了前8节课的lecture，完成了前四个assignments |
-| Stanford-CS224W | Machine Learning with Graphs                         | 图机器学习课程，从传统的图机器学习方法开始，重点讲了GNN和图学习中的各种子任务 | 目前学习到前11个lecture，完成了两个正式的colab  |
-| Stanford-CS246  | Mining Massive Data Sets                             | 数据挖掘课程，内容包括Spark，频繁模式挖掘，机器学习中的聚类和降维，推荐系统，计算广告学等内容 | NULL                                            |
+| Stanford-CS224W | Machine Learning with Graphs                         | 图机器学习课程，从传统的图机器学习方法开始，重点讲了GNN和图学习中的各种子任务 | 基本完成了学习                                  |
+| Stanford-CS246  | Mining Massive Data Sets                             | 数据挖掘课程，内容包括Spark，频繁模式挖掘，机器学习中的聚类和降维，推荐系统，计算广告学等内容 | 正在学习中                                      |
 | Stanford-CS276  | Information Retrieval and Web Search                 | 信息检索课程，从倒排索引开始介绍如何实现一个搜索引擎，同时也介绍一些文本分类之类的机器学习算法 | NULL                                            |
 | Stanford CS329S | Machine Learning System Design                       | 机器学习系统设计课程                                         | NULL                                            |
 | CS330           | Deep Multi-task and Meta Learning                    | 讲多任务学习和元学习的课程                                   | NULL                                            |
@@ -30,7 +30,7 @@
 | CMU 15-312      | Foundations of PL                    | 介绍编程语言原理的入门课程                                   | NULL     |
 | Stanford- CS243 | Program Analysis And Optimization    | 介绍高级编译原理，程序的形式化方法的课程，看起来非常有意思   | NULL     |
 | MIT-6.804       | Operating System                     | MIT的操作系统神课，实现一个risc-v的操作系统内核，非常硬核，目前我还接受不了 | NULL     |
-|                 |                                      |                                                              |          |
+| CMU15-440       | Distributed System                   | CMU的分布式系统课程，可以试试                                | NULL     |
 
 
 
