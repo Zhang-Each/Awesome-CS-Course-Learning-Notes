@@ -33,7 +33,7 @@
 - 这里的概率计算采用的是打分函数的softmax形式，当然**论文中的打分函数是越大越大，跟我上面认为的打分函数是互为相反数**的(事实上各种各样的论文对打分函数有没有负号这个问题一直没有明确统一的意见，我看到的有的论文是没有的，而有的论文有负号)，这一点要加以区别，但总体的思路没有变，这个概率计算具体的形式是：
 
 $$
-p(\bar{h} \mid(t, r))=\frac{\exp (f(\bar{h}, r, t))}{\sum_{h_{i} \in \hat{\mathcal{H}}_{(r, t)}} \exp \left(f\left(\bar{h}_{i}, r, t\right)\right)}
+p(\bar{h} \mid(t, r))=\frac{\exp \left(f(\bar{h}, r, t)\right)}{\sum_{h_{i} \in \hat{\mathcal{H}}_{(r, t)}} \exp \left(f\left(\bar{h}_{i}, r, t\right)\right)}
 $$
 
 ## 和自我学习(Self-Pace Learning)的联系
