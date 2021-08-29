@@ -8,7 +8,6 @@ coco_captioning/
 *.log
 *.tex
 *.toc
-pictures/
 *.ttf
 chapter/
 *.gz
