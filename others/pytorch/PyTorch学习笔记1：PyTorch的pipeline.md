@@ -103,6 +103,16 @@ for batch_idx, (x, y) in enumerate(train_data_loader):
 
 
 
+## CUDA加速
+
+### GPU和CPU的异构计算
+
+​	  这一部分在另一个目录intern下有关于GPU/CUDA更详细的叙述，总的来说GPU体系结构的设计对计算密集型任务进行了一定的特化，因此对计算密集型的任务处理效率特别高，而对于一些复杂的逻辑处理还是应该依赖CPU，因此也就形成了CPU-GPU的异构计算体系。本文主要通过一些实验来探究PyTorch中调用GPU带来的计算加速效果。
+
+### PyTorch如何调用GPU
+
+​	  PyTorch集成了CUDA相关的功能，当前计算机是否可以调用GPU可以用`torch.cuda.is_available()`方法判断，同时PyTorch中的张量可以用`cuda()`方法从CPU中转移到GPU中进行计算，也可以用`to(device)`方法在CPU和GPU之间任意地切换，被转移到GPU中的张量相关的计算就会在GPU中进行。
+
 
 
 
