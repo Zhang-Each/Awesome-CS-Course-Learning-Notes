@@ -1,6 +1,6 @@
 # CMU10-708PGM04：Exact Inference
 
-> CMU10-708课程Lecture3《Exact Inference》的课程学习笔记，这一节开始介绍概率图模型中的推断，首先讲的是精确推断的方法
+> CMU10-708课程Lecture4《Exact Inference》的课程学习笔记，这一节开始介绍概率图模型中的推断，首先讲的是精确推断的方法
 
 ## 概率图模型中的任务
 
