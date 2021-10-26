@@ -1,4 +1,4 @@
-# 论文阅读笔记23：KG-BERT&K-BERT
+# 论文阅读笔记22：KG-BERT&K-BERT
 
 > 论文《KG-BERT: BERT for Knowledge Graph Completion》和《K-BERT: Enabling Language Representation with Knowledge Graph》的阅读笔记，两篇论文都做了BERT预训练模型和知识图谱结合的工作，但是侧重点各有不同，KG-BERT关注用BERT解决知识图谱中本身的问题，而K-BERT的重点是在BERT中注入知识三元组并增强语言模型的效果
 
