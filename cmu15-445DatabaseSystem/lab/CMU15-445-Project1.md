@@ -220,3 +220,64 @@ Page *BufferPoolManagerInstance::FetchPgImp(page_id_t page_id) {
 - `DeletePgImp(page_id)`
 - `FlushAllPagesImpl()`
 
+实际上这部分作业就是在原本的Buffer Pool Manager上包装一层API，我们应该要注意到初始代码中每个Buffer Pool Manager中就有这样两个变量：
+
+```cpp
+/** How many instances are in the parallel BPM (if present, otherwise just 1 BPI) */
+  const uint32_t num_instances_ = 1;
+  /** Index of this BPI in the parallel BPM (if present, otherwise just 0) */
+  const uint32_t instance_index_ = 0;
+  /**
+   * Each BPI maintains its own counter for page_ids to hand out,
+   * must ensure they mod back to its instance_index_
+   * */
+  std::atomic<page_id_t> next_page_id_ = instance_index_;
+```
+
+实际上这几个变量已经告诉我们怎么样写出一个并行缓冲区管理器了，`num_instances_`代表了并行缓冲区中Buffer的个数，而`instance_index_`表示了当前缓冲区的id编号，`next_page_id`是一个页号管理器，在实现的时候我们每次新增页之后都会有`next_page_id += num_instances`的操作，这是因为在并行缓冲区的设计中，页号和缓冲区id的映射关系是`buffer_id = page_id % num_instances_` 
+
+所以我们在实现的时候也应该遵循这种设计模式，我们可以使用一个`vector`来存储所有的缓冲区实例，并将他们的id和下标相对应，而上面要实现的这些操作中，除了`NewPageImp()`以外，剩下的操作其实都是先增加一步查询到`buffer_id`的操作之后到对应的缓冲区执行相应的操作，如下面的代码所示：
+
+```c++
+Page *ParallelBufferPoolManager::FetchPgImp(page_id_t page_id) {
+  // Fetch page for page_id from responsible BufferPoolManagerInstance
+  page_id_t buffer_id = page_id % num_ins_;
+  Page *result = buffers_[buffer_id]->FetchPage(page_id);
+  return result;
+}
+```
+
+这一部分task唯一有难度的地方就在于`NewPageImp()`这个函数的实现上，我们要实现的逻辑是：
+
+1. 每次新建Page的时候，要从一个`starter_index`开始一个个缓冲区申请过去，直到在某个缓冲区中创建成功，或者遍历所有的缓冲区之后发现都满了无法创建为止，之后一次创建结束
+2. 创建结束之后`starter_index += 1`，下一次从后一个位置开始申请新建Page，起到一个时间片轮转的作用。
+
+因此最后我实现的代码是：
+
+```cpp
+Page *ParallelBufferPoolManager::NewPgImp(page_id_t *page_id) {
+  // create new page. We will request page allocation in a round robin manner from the underlying
+  // BufferPoolManagerInstances
+  // 1.   From a starting index of the BPMIs, call NewPageImpl until either
+  // 1) success and return 2) looped around to starting index and return nullptr
+  // 2.   Bump the starting index (mod number of instances) to start search at a different BPMI each time this function
+  // is called
+  //size_t i = start_index_;
+  Page* result = nullptr;
+  for (size_t i = 0; i < num_ins_; i ++) {
+    size_t index = (i + start_index_) % num_ins_;
+    result = buffers_[index]->NewPage(page_id);
+    if (result != nullptr) {
+      LOG_DEBUG("Buffer ID = %zu, page id = %d", index, *page_id);
+      break;
+    }
+  }
+  if (result == nullptr) {
+    LOG_DEBUG("No new page created!");
+  }
+  start_index_ = (start_index_ + 1) % num_ins_;
+  return result;
+}
+```
+
+要注意的是下标不能越界，及时取余数保证下标在可访问的范围内，代码主体其实就是一个for循环。
