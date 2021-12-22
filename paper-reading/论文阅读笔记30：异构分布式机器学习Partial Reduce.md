@@ -53,6 +53,56 @@ PS和All-Reduce都依赖于固定的通信机制，这种通信机制在异构�
 
 ## Partial Reduce算法
 
+### Constant Partial Reduce(CPR)
 
+为了减少每个worker的等待时间，Partial Reduce给出的解决方案是放宽All-Reduce算法在训练过程中的同步需求。在All-Reduce中，每个worker要等待所有其他的worker完成训练并同步信息，而在Partial Reduce中，这个要求被放宽到了只需要每个worker和随机选择的P个worker进行同步。
+
+![image-20211221190434833](static/image-20211221190434833.png)同时Partial Reduce中引入了一个controller的概念，在每一次的迭代中，每个worker进行一个batch的训练，在完成训练之后发送一个信号给controller表示自己已经完成了训练，并且controller中有一个生产者-消费者队列，每次收到worker的完成信号就把信息加入到队列中，当队列里完成的worker达到P个的时候，队列会pop出这P个信号，并让它们执行partial reduce操作，在CPR中，模型结合的方式是对P个模型取平均值。
+
+相比于All-Reduce，Partial Reduce在保持对通信带宽的利用的基础上，解决了global barrier的问题。并且每个worker在完成一次P-Reduce之后就可以直接进入下一轮迭代，不需要等待跑的慢的worker
+
+![image-20211221194305408](static/image-20211221194305408.png)
+
+### 全局信息更新
+
+对于全局来说，一次P-Reduce被看成是一个iteration，并且要把每次P-Reduce的结果更新到全局模型中，具体的更新方式是：
+$$
+\mathrm{X}_{\mathrm{k}+1}=\left(\mathrm{X}_{\mathrm{k}}-\eta \mathrm{G}_{k}\right) \mathrm{W}_{k}
+$$
+这里的矩阵W是一个同步矩阵，其定义如下：
+$$
+\mathbf{W}_{k}(i j)=\left\{\begin{array}{ll}
+1 / P, & \text { if workers } i, j \in \mathcal{S}_{k} \\
+1, & \text { if worker } i \notin \mathcal{S}_{k} \text { and } i=j \\
+0, & \text { otherwise }
+\end{array}\right.
+$$
+而梯度矩阵G的定义如下：
+$$
+\mathrm{G}_{k}(i)=\left\{\begin{array}{ll}
+\mathrm{g}\left(\mathrm{x}_{k}^{i} ; \xi_{k}^{i}\right), & \text { if worker } i \in \mathcal{S}_{k} \\
+0, & \text { otherwise }
+\end{array}\right.
+$$
+一个计算的例子如下：
+
+![image-20211221200340815](static/image-20211221200340815.png)
+
+### 算法整体流程
+
+Partial Reduce算法的总体流程可以用下面的伪代码进行表示：
+
+<img src="static/image-20211221200642951.png" alt="image-20211221200642951" style="zoom:33%;" />
+
+### 动态Partial-Reduce
+
+在CPR中，模型聚合成全局模型的过程中使用的权重是固定的1/P，但是这种方式存在缺点，因为所有的worker都是从相同的初始化参数开始训练的，而训练的慢的worker可能会撞上训练的快的worker(比如快的worker训练3轮之后刚好遇到了慢的worker结束1轮训练)，这个时候它们需要共同进行Reduce操作，显然如果还是按照CPR的方法对模型进行平均加权，那显然不合适。
+
+所以论文提出了一种动态的Partial-Reduce，可以根据每个模型训练的轮数**自动调整其对应的权重**，使用的权重设定方法是EMA(Exponential Moving Average)，即：
+$$
+\overline{\mathbf{x}}_{k}=\sum_{i=1}^{k} \beta_{i} \mathbf{x}_{i}, \quad \beta_{i}=\frac{(1-\alpha) \alpha^{k-i}}{1-\alpha^{k}}
+$$
 
 ## 实验
+
+论文的实验主要是用PyTorch构建了一个P-Reduce分布式训练的原型系统，并且使用CIFAR10数据集和一系列经典的深度CNN作为训练数据集和目标进行了实验，将实验结果和All-Reduce，Eager-Reduce和PS等算法进行了对比，主要研究了模型的收敛率，运算效率和可扩展性等问题。
