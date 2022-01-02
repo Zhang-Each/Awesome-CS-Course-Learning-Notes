@@ -24,7 +24,6 @@
 | cs231n-NeuralNetwork&DL        | 包含Stanford-cs231n神经网络和深度学习入门课程的assignments和完成assignments过程中所写的一系列**公式推导和感悟**，相关内容也发表在个人博客上 |
 | cs246-DataMining&Recsys        | Stanford-cs246海量数据集挖掘课程的学习笔记和assignments，目前正在进行中 |
 | cs330-Multi-task&Meta Learning | Stanford-cs330课程，主要讲元学习和多任务学习，但是感觉质量一般，后面强化学期部分就不看了。 |
-| log                            | **记录本仓库的更新记录**                                     |
 | machine-learning               | 以前学习机器学习过程中完成的一些笔记和coding                 |
 | paper-reading                  | 读各种论文过程中的一些笔记                                   |
 
