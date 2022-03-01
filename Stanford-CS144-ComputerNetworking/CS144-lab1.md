@@ -101,3 +101,8 @@ void StreamReassembler::push_substring(const string &data, const size_t index, c
 
 - 总体的思路是先把传入的一个segment存放在临时buffer中，然后从ByteStream末尾的索引(就是start)开始找一个连续的字符串并存放到ByteStream对象中去
 - 值得注意的是，判断EOF的时候不是简单的只判断输入的eof参数是不是true，还要注意写入临时buffer中的数据量是不是刚好能到输入data的末尾，因为data的末尾才代表了EOF，而buffer的容量有限，如果最后一个byte没有写入，那么实际上这个输入流就还没有到EOF的状态，所以这个时候还不能EOF，然后判断ByteStream也不仅要满足EOF，还要剩余的未处理的字节数量为0
+
+$$
+f=\sum_{i=1}^na_i
+$$
+
