@@ -1,6 +1,6 @@
 # CMU 11-877-AMML：Week1-Introduction  to Multi-modal Learning
 
-> CMU的公开课程11-775《**A**dvanced **T**opics in **M**ulti**M**odal **M**achine **L**earning(AMML)》课程的学习笔记，这门课程以读各种各样的论文为主，没有什么平时作业。第一周主要阅读两篇综述论文，分别是表示学习的综述[《Representation Learning: A Review and New Perspectives》](https://arxiv.org/abs/1206.5538)和多模态机器学习的综述[《Multimodal Machine Learning: A Survey and Taxonomy》](https://arxiv.org/abs/1705.09406)，不过因为是综述，所以我没有特别仔细阅读，主要就是了解个大概。
+> CMU的公开课程11-877《**A**dvanced **T**opics in **M**ulti**M**odal **M**achine **L**earning(AMML)》课程的学习笔记，这门课程以读各种各样的论文为主，没有什么平时作业。第一周主要阅读两篇综述论文，分别是表示学习的综述[《Representation Learning: A Review and New Perspectives》](https://arxiv.org/abs/1206.5538)和多模态机器学习的综述[《Multimodal Machine Learning: A Survey and Taxonomy》](https://arxiv.org/abs/1705.09406)，不过因为是综述，所以我没有特别仔细阅读，主要就是了解个大概。
 
 ## 表示学习Representation Learning
 
