@@ -1,4 +1,4 @@
-# CMU10-708PGM03：Directed Graph Model
+# CMU10-708PGM02：Directed Graph Model
 
 > CMU10-708的Lecture2和3，主要内容是介绍概率图模型中的有向图模型Directed Graph Model和无向图模型Undirected Graph Model
 
