@@ -107,7 +107,7 @@ func ConcurrentChannel(url string, fetcher Fetcher) {
 
 ​	  远程过程调用是实现分布式系统各种机制的最关键部分之一，本课程中所有的lab都要使用RPC，RPC的目的是提供一种易于编写的客户端/服务端交互机制，同时隐藏网络通信协议的细节，提供灵活的数据格式转换。
 
-![image-20210708170121218](static/image-20210708170121218.png)
+![image-20210708170121218](https://raw.githubusercontent.com/Zhang-Each/Image-Bed/main/img/image-20210708170121218.png)
 
 ### RPC的go代码实现
 

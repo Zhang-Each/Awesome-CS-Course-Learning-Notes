@@ -60,9 +60,7 @@ def Reduce(k, v):
 
 ### 总体架构与工作流程
 
-![image-20210706000100209](static/image-20210706000100209.png)
-
-
+![image-20220529224328415](https://raw.githubusercontent.com/Zhang-Each/Image-Bed/main/img/image-20220529224328415.png)
 
 ​	  在一个MapReduce系统中，用户将所有的作业提交到一个调度系统上，每个作业包含了一系列任务，然后调度系统将其分配到一个计算机集群中的若干台计算机上进行运行，整个过程大致可以分为如下几步：
 
